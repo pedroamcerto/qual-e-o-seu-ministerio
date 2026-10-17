@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Qual é o seu ministério? — Efésios 4</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--tx:#2b2620;--mu:#7a7064;--ac:#b4532a;--ok:#2e7d4f;--bd:#e4dccf;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1a17;--card:#27231f;--tx:#f2ece3;--mu:#a89d8f;--ac:#e0875a;--ok:#5fc08a;--bd:#3a342d;color-scheme:dark}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45;overflow-x:hidden}
+main{max-width:520px;margin:0 auto;padding:18px}
+h1{font-size:1.6rem;margin:8px 0}h2{font-size:1.1rem;margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:18px;margin:12px 0;animation:in .35s ease}
+.mu{color:var(--mu);font-size:.9rem}.ct{text-align:center}
+button{font:inherit;width:100%;text-align:left;background:var(--card);color:var(--tx);border:1.5px solid var(--bd);border-radius:14px;padding:13px 14px;margin:6px 0;cursor:pointer;transition:transform .1s}
+button:active{transform:scale(.97)}
+button.p{background:var(--ac);color:#fff;border-color:var(--ac);text-align:center;font-weight:700}
+button.sel{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 18%,var(--card))}
+input{width:100%;font:inherit;background:var(--card);color:var(--tx);border:1.5px solid var(--bd);border-radius:12px;padding:12px}
+.pg{height:8px;border-radius:9px;background:var(--bd);overflow:hidden;margin:8px 0}.pg i{display:block;height:100%;background:var(--ac);transition:width .3s}
+.big{font-size:4.5rem;text-align:center}.big span{display:inline-block;animation:bob 1.2s infinite}
+.row{margin:10px 0}.row div{display:flex;justify-content:space-between;font-size:.9rem}
+.bar{height:10px;border-radius:9px;background:var(--bd);overflow:hidden;margin-top:3px}.bar i{display:block;height:100%;background:var(--ac);width:0;transition:width 1s ease}
+.sc{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd)}
+.fl{position:fixed;left:50%;top:40%;font-size:1.6rem;pointer-events:none;z-index:9;animation:fly 1.3s ease-out forwards}
+@keyframes in{from{opacity:0;transform:translateY(12px)}}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@keyframes fly{to{transform:translate(var(--x),var(--y)) rotate(360deg);opacity:0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.av{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.av b{width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:2px solid var(--bd);border-radius:50%;cursor:pointer;background:var(--card);transition:transform .15s}.av b.on{border-color:var(--ac);transform:scale(1.18)}
+.toast{position:fixed;left:50%;bottom:calc(30px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:8px 16px;border-radius:99px;font-size:.9rem;z-index:10;animation:in .2s;white-space:nowrap}
+.cd{font-size:7rem;text-align:center;font-weight:800;color:var(--ac);animation:pulse .9s}
+@keyframes pulse{from{transform:scale(2.2);opacity:0}}
+.rc{border-radius:22px;padding:22px;text-align:center;color:#fff;margin:12px 0;animation:flip .8s}
+@keyframes flip{from{transform:rotateY(90deg);opacity:0}}
+.tm{display:flex;justify-content:space-around;align-items:flex-end;text-align:center}
+</style></head><body><main id="app"></main>
+<script>
+var K=["ap","pr","ev","pa","me"];
+var M={
+ap:{c:"#d9531e",e:"🚀",n:"Apóstolo",w:"Enviado para abrir caminhos",d:"Você tem visão, iniciativa e coragem para começar o que ainda não existe: novos grupos, projetos e frentes. Gosta de mobilizar pessoas e de formar outros líderes.",f:"Visão, pioneirismo, mobilização",c:"Cuidar de não deixar pessoas e detalhes para trás na pressa de avançar.",b:"Paulo (At 13–14)"},
+pr:{c:"#c0392b",e:"🔥",n:"Profeta",w:"Voz que alinha ao coração de Deus",d:"Você é sensível à voz do Espírito e percebe o que está desalinhado. Fala a verdade com franqueza e ajuda o grupo a buscar a Deus e a viver com mais integridade.",f:"Sensibilidade espiritual, franqueza, clamor por santidade",c:"Falar sempre com amor e humildade, e testar o que sente com a Palavra e com a comunidade.",b:"Natã (2Sm 12)"},
+ev:{c:"#c27c0e",e:"📣",n:"Evangelista",w:"Leva as boas-novas aos que não conhecem Jesus",d:"Você tem paixão por quem ainda está longe de Deus. Puxa conversa com facilidade, comunica o evangelho de forma simples e vibra com cada nova vida alcançada.",f:"Coragem, comunicação, paixão por pessoas",c:"Acompanhar quem se converteu, junto com pastores e mestres, para que cresçam.",b:"Filipe (At 8)"},
+pa:{c:"#2e8b57",e:"🐑",n:"Pastor",w:"Cuida e acompanha como um rebanho",d:"Você nota quem está quieto, ferido ou sozinho e vai ao encontro. Constrói vínculos duradouros, escuta com paciência e ajuda as pessoas a se restaurarem.",f:"Empatia, paciência, fidelidade",c:"Aprender a confrontar com amor e a cuidar de si para não se esgotar.",b:"Pedro em Jo 21:15-17"},
+me:{c:"#3b6fb6",e:"📖",n:"Mestre",w:"Firma a Igreja na verdade",d:"Você ama estudar a Palavra e tem facilidade para explicá-la com clareza e profundidade. Ajuda os outros a entender, a discernir ensinos e a amadurecer na fé.",f:"Clareza, profundidade, discernimento",c:"Aplicar o que aprende na prática e no relacionamento, não só na teoria.",b:"Esdras (Ed 7:10)"}};
+var Q=[
+["Quando surge um novo desafio no grupo, você…","Quer abrir um caminho novo e começar algo que ainda não existe","Para e pergunta o que Deus está dizendo e se estamos alinhados","Pensa em quem ainda não conhece Jesus e como alcançá-los","Verifica como cada pessoa está e se todos estão sendo cuidados","Estuda a Palavra para entender o que ela diz sobre isso"],
+["O que mais te energiza?","Plantar e liderar algo novo","Ver a verdade de Deus tocar o que está errado","Ver alguém conhecer Jesus pela primeira vez","Acompanhar alguém de perto em sua caminhada","Ver alguém entender uma verdade bíblica"],
+["Num encontro de amigos, você costuma…","Propor o próximo passo e mobilizar o pessoal","Perceber o clima espiritual e dizer o que sente de Deus","Conversar com os novatos e falar de fé","Notar quem está quieto e ir ao encontro","Explicar um texto ou responder dúvidas"],
+["O que mais te incomoda ver?","Boas ideias que nunca saem do papel","Gente espiritualmente acomodada e insensível a Deus","Pessoas perdidas sem ouvir o evangelho","Pessoas sozinhas ou feridas sem apoio","Pessoas confusas por ensinos errados"],
+["Para ajudar alguém em crise, você…","Ajuda a reorganizar a vida com um plano e direção","Ora e compartilha o que sente que Deus está falando","Lembra do evangelho e da esperança em Cristo","Fica perto, escuta e acompanha por muito tempo","Mostra o que a Bíblia ensina sobre o que a pessoa vive"],
+["Antes de falar ao grupo, você…","Pensa na visão geral e no que precisamos construir","Ora e espera uma palavra para aquele momento","Busca um jeito simples de apresentar Jesus","Pensa nas pessoas que estarão ali e no que precisam","Estuda o texto a fundo e organiza os pontos"],
+["Qual elogio mais combina com você?","“Você abre portas e inicia coisas”","“Você enxerga o que os outros não veem”","“Você tem coragem de falar de Jesus”","“Você faz as pessoas se sentirem cuidadas”","“Você explica de um jeito que dá para entender”"],
+["Numa viagem missionária, você quer…","Abrir uma nova frente e treinar líderes locais","Orar e discernir o que Deus está fazendo ali","Conversar com o máximo de pessoas sobre Jesus","Cuidar da equipe e de quem for alcançado","Ensinar os novos convertidos nos fundamentos"],
+["Quando alguém erra, você…","Redireciona e dá uma nova missão","Fala a verdade com franqueza, mesmo desconfortável","Mostra que a graça de Cristo é maior","Acolhe primeiro e restaura com paciência","Explica o que é certo e por quê, pela Palavra"],
+["Que leitura mais te atrai?","Biografias de pioneiros e fundadores","Livros sobre avivamento e a voz de Deus","Testemunhos de conversão e missões","Livros sobre cuidado e relacionamentos","Comentários bíblicos e teologia"],
+["No grupo, você sonha em…","Multiplicar: começar novos grupos","Ver o grupo ouvindo mais a Deus e vivendo em santidade","Ver o grupo cheio de gente nova conhecendo Jesus","Ver todos unidos e cuidando uns dos outros","Ver todos firmados na Palavra e maduros"],
+["Sua maior força é…","Visão e coragem de começar","Sensibilidade espiritual e franqueza","Paixão por quem está longe de Deus","Empatia e paciência","Clareza e profundidade"]];
+var AV=["🦁","🐑","🕊️","🔥","⚓","🌟","🚀","🎸"],S={g:[],av:"🦁"},app=document.getElementById("app");
+var MS=["Boa! 🔥","Anotado ✍️","Interessante 👀","Com certeza 😄","Tá se revelando…","Hmm, curioso 🤔","Show! ✨","Isso diz muito","Quase lá 💪","Top! 🙌","Última curva…","Ufa, acabou! 🎉"];
+function toast(t){var e=document.createElement("div");e.className="toast";e.textContent=t;document.body.appendChild(e);setTimeout(function(){e.remove()},900)}
+function shr(m){var t=S.n+" é "+m.n+" "+m.e+" no teste dos ministérios de Efésios 4! 🕊️";try{if(navigator.share){navigator.share({text:t}).catch(function(){});return}}catch(e){}try{navigator.clipboard.writeText(t).then(function(){toast("Copiado! 📋")},function(){toast("Não deu para copiar")})}catch(e){toast("Não deu para copiar")}}
+function team(){var c={ap:0,pr:0,ev:0,pa:0,me:0};S.g.forEach(function(x){c[x.k]++});var h='<h1 class="ct">👥 O time do grupo</h1><div class="card"><div class="tm">';K.forEach(function(k){h+='<div><div style="font-size:2rem">'+M[k].e+'</div><b>'+c[k]+'</b><div class="mu">'+M[k].n+'</div></div>'});h+='</div></div>';var f=K.filter(function(k){return!c[k]});h+='<div class="card"><p>'+(f.length?'<b>Ainda sem representante:</b> '+f.map(function(k){return M[k].e+' '+M[k].n}).join(", ")+'. Todos podemos crescer em cada área. Que tal conversar sobre quem poderia desenvolver isso no grupo?':'Vocês têm os cinco ministérios representados! Vale conversar sobre como um completa o outro (Ef 4:12-13).')+'</p></div><button class="p" id="bk">◀ Voltar</button>';app.innerHTML=h;document.getElementById("bk").onclick=home}
+function sh(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+function boom(n){var em=["🎉","✨","🕊️","⭐","🔥"];for(var i=0;i<n;i++){var s=document.createElement("span");s.className="fl";s.textContent=em[i%5];s.style.setProperty("--x",(Math.random()*400-200)+"px");s.style.setProperty("--y",(Math.random()*-320-40)+"px");document.body.appendChild(s);setTimeout(function(e){return function(){e.remove()}}(s),1400)}}
+function home(){var h='<div class="big"><span>🕊️</span></div><h1 class="ct">Qual é o seu ministério?</h1><p class="mu ct">Os 5 ministérios de Efésios 4:11 · 12 perguntas · responda com o que é mais natural em você</p><div class="card"><h2>Seu nome</h2><input id="nm" placeholder="Digite seu nome" maxlength="20"><p class="mu">Escolha seu avatar:</p><div class="av" id="av"></div><button class="p" id="go" style="margin-top:12px">Bora ▶</button></div>';
+if(S.g.length){h+='<div class="card"><h2>Resultados do grupo</h2>';S.g.forEach(function(x){h+='<div class="sc"><span>'+x.a+' '+esc(x.n)+'</span><b>'+M[x.k].e+' '+M[x.k].n+(x.k2?' + '+M[x.k2].e:'')+'</b></div>'});h+='</div>'+(S.g.length>1?'<button id="tb">👥 Ver o time do grupo</button>':'')}
+app.innerHTML=h;var av=document.getElementById("av");AV.forEach(function(a){var b=document.createElement("b");b.textContent=a;b.className=a===S.av?"on":"";b.onclick=function(){S.av=a;Array.prototype.forEach.call(av.children,function(c){c.className=""});b.className="on"};av.appendChild(b)});var tb=document.getElementById("tb");if(tb)tb.onclick=team;document.getElementById("go").onclick=function(){S.n=document.getElementById("nm").value.trim()||"Você";S.i=0;S.sc={ap:0,pr:0,ev:0,pa:0,me:0};ask()}}
+function ask(){if(S.i>=Q.length)return wait();var q=Q[S.i],o=sh([1,2,3,4,5]);
+var h='<p class="mu">'+esc(S.n)+' · pergunta '+(S.i+1)+' de '+Q.length+'</p><div class="pg"><i style="width:'+(S.i/Q.length*100)+'%"></i></div><div class="card"><h2>'+esc(q[0])+'</h2>';
+o.forEach(function(k){h+='<button data-k="'+(k-1)+'">'+esc(q[k])+'</button>'});app.innerHTML=h+'</div>';
+Array.prototype.forEach.call(app.querySelectorAll("button"),function(b){b.onclick=function(){b.className="sel";S.sc[K[+b.getAttribute("data-k")]]++;if(navigator.vibrate)navigator.vibrate(15);toast(MS[S.i%MS.length]);setTimeout(function(){S.i++;ask()},450)}})}
+function wait(n){if(n===undefined)n=3;if(n<1)return result();app.innerHTML='<p class="mu ct" style="margin-top:60px">Preparando o seu resultado…</p><div class="cd">'+n+'</div>';if(navigator.vibrate)navigator.vibrate(30);setTimeout(function(){wait(n-1)},900)}
+function result(){var r=K.slice().sort(function(a,b){return S.sc[b]-S.sc[a]}),k=r[0],k2=S.sc[r[1]]>=S.sc[k]-1?r[1]:null,m=M[k];
+S.g.push({n:S.n,a:S.av,k:k,k2:k2});
+var h='<div class="rc" style="background:linear-gradient(135deg,'+m.c+',color-mix(in srgb,'+m.c+' 55%,#000))"><div class="big"><span>'+m.e+'</span></div><p>'+S.av+' '+esc(S.n)+', você é</p><h1>'+m.n+'</h1><p><i>'+m.w+'</i></p></div><div class="card"><p>'+m.d+'</p><p><b>Pontos fortes:</b> '+m.f+'</p><p><b>Para crescer:</b> '+m.c+'</p><p><b>Exemplo bíblico:</b> '+m.b+'</p>';
+if(k2)h+='<p><b>Traço forte também:</b> '+M[k2].e+' '+M[k2].n+' — '+M[k2].w+'.</p>';
+h+='</div><div class="card"><h2>Seu perfil completo</h2>';
+r.forEach(function(x){h+='<div class="row"><div><span>'+M[x].e+' '+M[x].n+'</span><b>'+Math.round(S.sc[x]/Q.length*100)+'%</b></div><div class="bar"><i style="background:'+M[x].c+'" data-w="'+(S.sc[x]/Q.length*100)+'"></i></div></div>'});
+h+='</div><p class="mu">Este teste é uma conversa para se conhecer melhor, não um veredito. Ef 4:11-12 fala de funções dadas para equipar a Igreja. Converse com seu líder e com os amigos sobre o que eles enxergam em você.</p><button class="p" id="sh">📤 Compartilhar meu resultado</button><button id="nx">Próxima pessoa ▶</button><button id="rp">Refazer o teste</button>';
+app.innerHTML=h;boom(30);setTimeout(function(){Array.prototype.forEach.call(document.querySelectorAll(".bar i"),function(i){i.style.width=i.getAttribute("data-w")+"%"})},100);
+document.getElementById("sh").onclick=function(){shr(m)};document.getElementById("nx").onclick=home;document.getElementById("rp").onclick=function(){S.g.pop();S.i=0;S.sc={ap:0,pr:0,ev:0,pa:0,me:0};ask()}}
+home();
+</script></body></html>
